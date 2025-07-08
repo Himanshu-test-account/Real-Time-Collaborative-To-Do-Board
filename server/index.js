@@ -8,17 +8,17 @@ import app from './app.js';
 // Load env vars
 dotenv.config();
 
-const server = http.createServer(app);
-const io = new SocketIOServer(server, {
-  cors: {
-    origin: ['http://localhost:3000', 'https://jazzy-granita-3c914e.netlify.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-  }
+// MongoDB connection
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('MongoDB connected');
+}).catch((err) => {
+  console.error('MongoDB connection error:', err);
 });
 
 // Middleware
-// console.log('CORS allowed origin:', process.env.CLIENT_URL);
 app.use(cors({
   origin: ['http://localhost:3000', 'https://jazzy-granita-3c914e.netlify.app'],
   credentials: true
@@ -38,27 +38,8 @@ app.use((req, res, next) => {
   res.status(404).json({ error: 'Not Found', code: 404 });
 });
 
+// Socket.IO setup (optional, only if you need real-time features)
+// If you want to use Socket.IO with Vercel, you need a custom serverless function or a different host.
+// For now, we skip Socket.IO setup for Vercel compatibility.
 
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('MongoDB connected');
-}).catch((err) => {
-  console.error('MongoDB connection error:', err);
-});
-
-// Socket.IO connection
-io.on('connection', (socket) => {
-  console.log('A user connected:', socket.id);
-  socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
-  });
-});
-
-// Start server
-const PORT = process.env.PORT;
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-}); 
+export default app; 
