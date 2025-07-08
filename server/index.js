@@ -11,16 +11,16 @@ dotenv.config();
 const server = http.createServer(app);
 const io = new SocketIOServer(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'https://jazzy-granita-3c914e.netlify.app'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }
 });
 
 // Middleware
-console.log('CORS allowed origin:', process.env.CLIENT_URL);
+// console.log('CORS allowed origin:', process.env.CLIENT_URL);
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: ['http://localhost:3000', 'https://jazzy-granita-3c914e.netlify.app'],
   credentials: true
 }));
 
@@ -29,6 +29,8 @@ app.get('/test-cors', (req, res) => {
   res.json({ message: 'CORS is working!' });
 });
 
+// server is runnig 
+app.get('/', )
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
