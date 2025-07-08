@@ -29,7 +29,7 @@ app.get('/test-cors', (req, res) => {
   res.json({ message: 'CORS is working!' });
 });
 
-app.get('/status', (req, res) => {
+app.get('/', (req, res) => {
   res.json({ active: true, error: false });
 });
 
