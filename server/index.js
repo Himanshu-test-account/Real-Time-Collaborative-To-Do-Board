@@ -29,8 +29,7 @@ app.get('/test-cors', (req, res) => {
   res.json({ message: 'CORS is working!' });
 });
 
-// server is runnig 
-app.get('/', )
+
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
