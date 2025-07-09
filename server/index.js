@@ -20,7 +20,10 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://gilded-hummingbird-c2155d.netlify.app/'],
+  origin: [
+    'http://localhost:3000',
+    'https://gilded-hummingbird-c2155d.netlify.app'
+  ],
   credentials: true
 }));
 
