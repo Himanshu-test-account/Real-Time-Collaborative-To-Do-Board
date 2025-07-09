@@ -31,7 +31,7 @@ app.get('/test-cors', (req, res) => {
   res.json({ message: 'CORS is working!' });
 });
 
-app.get('/', (req, res) => {
+app.get('/status', (req, res) => {
   res.json({ active: true, error: false });
 });
 
