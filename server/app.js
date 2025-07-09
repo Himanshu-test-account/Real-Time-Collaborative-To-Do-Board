@@ -8,7 +8,7 @@ import userRoutes from './routes/users.js';
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://jazzy-granita-3c914e.netlify.app'],
+  origin: ['http://localhost:3000', 'https://gilded-hummingbird-c2155d.netlify.app/'],
   credentials: true
 }));
 app.options('*', cors());
