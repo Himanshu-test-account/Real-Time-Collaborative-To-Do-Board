@@ -8,9 +8,15 @@ import userRoutes from './routes/users.js';
 const app = express();
 
 app.use(cors({
-  origin: ['https://gilded-hummingbird-c2155d.netlify.app'],
-  credentials: true
+  origin: [
+    'https://gilded-hummingbird-c2155d.netlify.app' // your Netlify frontend
+  ],
+  credentials: true, // if you use cookies or auth headers
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'] // add any custom headers you use
 }));
+
+// This line ensures Express responds to OPTIONS requests
 app.options('*', cors());
 
 app.use(express.json());
